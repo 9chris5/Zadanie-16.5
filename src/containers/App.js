@@ -39,7 +39,7 @@ class App extends React.Component {
         return (
             <div className = {style.TodoApp}>
                 <Title title = 'Apka Webpack+React!' counter = '(0)' />
-                <TodoList list = {this.state.data.map(item => <Todo text = {item.text} id = {item.id}/>)} />
+                <TodoList list = {this.state.data.map(item => <Todo key = {item.id} text = {item.text} onClick = {() => this.removeTodo(item.id)} />)} />
             </div>
         );
     }

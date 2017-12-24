@@ -1,6 +1,6 @@
 import React from 'react';
 
 const Todo = props => 
-    <li key = {props.id}>{props.text}</li>
+    <li onClick = {props.onClick}>{props.text}</li>
 
 export default Todo;
