@@ -3,6 +3,7 @@ import style from './App.css';
 import Title from '../components/Title';
 import TodoList from '../components/TodoList';
 import Todo from '../components/Todo';
+import TodoForm from '../components/TodoForm';
 
 
 
@@ -38,8 +39,9 @@ class App extends React.Component {
     render() {
         return (
             <div className = {style.TodoApp}>
-                <Title title = 'Apka Webpack+React!' counter = '(0)' />
+                <Title title = 'Apka Webpack+React!' counter = '7' />
                 <TodoList list = {this.state.data.map(item => <Todo key = {item.id} text = {item.text} onClick = {() => this.removeTodo(item.id)} />)} />
+                <TodoForm onClick = {() => this.addTodo(text)} />
             </div>
         );
     }
