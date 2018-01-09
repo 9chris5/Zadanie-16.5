@@ -1,8 +1,8 @@
 import React from 'react';
 
 const TodoForm = props =>
-    <form>
-        <input type = {props.text} value = "New task" />
-        <input type = "submit" value = "Add" onClick = {props.onClick}/>
+    <form onSubmit = {props.onSubmitHandle}>
+        <input type = "text" onChange = {props.onChangeHandle} />
+        <input type = "submit" value = "Add" />
     </form>
 export default TodoForm;

@@ -2,8 +2,8 @@ import React from 'react';
 import style from './App.css';
 import Title from '../components/Title';
 import TodoList from '../components/TodoList';
-import Todo from '../components/Todo';
 import TodoForm from '../components/TodoForm';
+import uuid from 'uuid';
 
 
 
@@ -23,14 +23,20 @@ class App extends React.Component {
             }]
         };
     }
-    addTodo(val){
+    onChangeHandle(event) {
+        console.log(event.target.value);
+        this.setState({
+            todoText: event.target.value
+        });
+    }
+    addTodo(event) {
+        event.preventDefault();
         const todo = {
-            text: val,
+            text: this.state.todoText,
             id: uuid.v4(),
         };
         const data = [...this.state.data, todo];
         this.setState({data});
-        console.log(data);
     }
     removeTodo(id) {
         const remainder = this.state.data.filter(todo => todo.id !== id);
@@ -39,9 +45,9 @@ class App extends React.Component {
     render() {
         return (
             <div className = {style.TodoApp}>
-                <Title title = 'Apka Webpack+React!' counter = '7' />
-                <TodoList list = {this.state.data.map(item => <Todo key = {item.id} text = {item.text} onClick = {() => this.removeTodo(item.id)} />)} />
-                <TodoForm onClick = {() => this.addTodo(text)} />
+                <Title title = 'Apka Webpack+React!' counter = {this.state.data.length} />
+                <TodoList list = {this.state.data} removeTodo = {this.removeTodo.bind(this)} />
+                <TodoForm onSubmitHandle = {this.addTodo.bind(this)} onChangeHandle = {this.onChangeHandle.bind(this)} />
             </div>
         );
     }
